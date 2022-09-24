@@ -14,6 +14,7 @@ def get_me_random_list(n):
 
 
 def insertion_sort(a_list):
+    start = time.time()
     for index in range(1, len(a_list)):
         current_value = a_list[index]
         position = index
@@ -24,29 +25,36 @@ def insertion_sort(a_list):
 
         a_list[position] = current_value
 
+    end = time.time()
+    return a_list, end - start
 
-def shellSort(alist):
-    sublistcount = len(alist) // 2
+
+def shellSort(a_list):
+    start = time.time()
+    sublistcount = len(a_list) // 2
     while sublistcount > 0:
         for startposition in range(sublistcount):
-            gapInsertionSort(alist, startposition, sublistcount)
+            gapInsertionSort(a_list, startposition, sublistcount)
 
-        # print("After increments of size", sublistcount, "The list is", alist)
+        # print("After increments of size", sublistcount, "The list is", a_list)
 
         sublistcount = sublistcount // 2
 
+    end = time.time()
+    return a_list, end - start
 
-def gapInsertionSort(alist, start, gap):
 
-    for i in range(start + gap, len(alist), gap):
-        currentvalue = alist[i]
+def gapInsertionSort(a_list, start, gap):
+
+    for i in range(start + gap, len(a_list), gap):
+        currentvalue = a_list[i]
         position = i
 
-        while position >= gap and alist[position - gap] > currentvalue:
-            alist[position] = alist[position - gap]
+        while position >= gap and a_list[position - gap] > currentvalue:
+            a_list[position] = a_list[position - gap]
             position = position - gap
 
-        alist[position] = currentvalue
+        a_list[position] = currentvalue
 
 
 def python_sort(a_list):
